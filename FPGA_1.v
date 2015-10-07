@@ -1,3 +1,4 @@
+
 ///////////////////////////
 //////Logic Cell unit//////
 ///////////////////////////
@@ -6,17 +7,22 @@
 //1.LC unit
 //2.LC to bus interconnection's unit
 
-//D flipflop with clock enable
+//Master slave D flipflop with clock enable, negedge triggred master
 module D_ff(input clk, input clk_enable, input reset, input d, output reg q);
+  reg mosi;
   always @ (negedge clk)
   begin
     if(clk_enable == 1)
     begin
       if(reset==1)
-       q=0;
+       mosi=0;
       else
-       q=d;
+       mosi=d;
     end    
+  end
+  always@(posedge clk)
+  begin
+    q=mosi;
   end
 endmodule
 
@@ -1090,5 +1096,6 @@ module fpga_testbench_addersub_4bit();//io unit, LC unit tested,bus interconnect
     load_unit= 8'b00000000;
   end
 endmodule
+
 
 
