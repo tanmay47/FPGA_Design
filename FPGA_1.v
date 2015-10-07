@@ -300,42 +300,40 @@ endmodule
 //block with 32*32 bits to support all connections between 2 buses(each 32 bit)
 //2 such instances will be needed to support signal flow in both directions (i.e. busA->busB and busA<-busB)
 module bus_reg_2(input clk, input [31:0]conf_data, input load_unit, input [7:0]load_level, output [1023:0]out);
-  wire [4:0]load_t;
   wire [31:0]load;
-  assign load_t = load_level[4:0] & {5{load_unit}};
-  decoder5to32 decoder5to320(load_t, load);
-  bus_reg_1 bus_reg_10(clk, conf_data, load[0], out[31:0]);
-  bus_reg_1 bus_reg_11(clk, conf_data, load[1], out[63:32]);
-  bus_reg_1 bus_reg_12(clk, conf_data, load[2], out[95:64]);
-  bus_reg_1 bus_reg_13(clk, conf_data, load[3], out[127:96]);
-  bus_reg_1 bus_reg_14(clk, conf_data, load[4], out[159:128]);
-  bus_reg_1 bus_reg_15(clk, conf_data, load[5], out[191:160]);
-  bus_reg_1 bus_reg_16(clk, conf_data, load[6], out[223:192]);
-  bus_reg_1 bus_reg_17(clk, conf_data, load[7], out[255:224]);
-  bus_reg_1 bus_reg_18(clk, conf_data, load[8], out[287:256]);
-  bus_reg_1 bus_reg_19(clk, conf_data, load[9], out[319:288]);
-  bus_reg_1 bus_reg_110(clk, conf_data, load[10], out[351:320]);
-  bus_reg_1 bus_reg_111(clk, conf_data, load[11], out[383:352]);
-  bus_reg_1 bus_reg_112(clk, conf_data, load[12], out[415:384]);
-  bus_reg_1 bus_reg_113(clk, conf_data, load[13], out[447:416]);
-  bus_reg_1 bus_reg_114(clk, conf_data, load[14], out[479:448]);
-  bus_reg_1 bus_reg_115(clk, conf_data, load[15], out[511:480]);
-  bus_reg_1 bus_reg_116(clk, conf_data, load[16], out[543:512]);
-  bus_reg_1 bus_reg_117(clk, conf_data, load[17], out[575:544]);
-  bus_reg_1 bus_reg_118(clk, conf_data, load[18], out[607:576]);
-  bus_reg_1 bus_reg_119(clk, conf_data, load[19], out[639:608]);
-  bus_reg_1 bus_reg_120(clk, conf_data, load[20], out[671:640]);
-  bus_reg_1 bus_reg_121(clk, conf_data, load[21], out[703:672]);
-  bus_reg_1 bus_reg_122(clk, conf_data, load[22], out[735:704]);
-  bus_reg_1 bus_reg_123(clk, conf_data, load[23], out[767:736]);
-  bus_reg_1 bus_reg_124(clk, conf_data, load[24], out[799:768]);
-  bus_reg_1 bus_reg_125(clk, conf_data, load[25], out[831:800]);
-  bus_reg_1 bus_reg_126(clk, conf_data, load[26], out[863:832]);
-  bus_reg_1 bus_reg_127(clk, conf_data, load[27], out[895:864]);
-  bus_reg_1 bus_reg_128(clk, conf_data, load[28], out[927:896]);
-  bus_reg_1 bus_reg_129(clk, conf_data, load[29], out[959:928]);
-  bus_reg_1 bus_reg_130(clk, conf_data, load[30], out[991:960]);
-  bus_reg_1 bus_reg_131(clk, conf_data, load[31], out[1023:992]);
+  decoder5to32 decoder5to320(load_level[4:0], load);
+  bus_reg_1 bus_reg_10(clk, conf_data, load[0]&load_unit, out[31:0]);
+  bus_reg_1 bus_reg_11(clk, conf_data, load[1]&load_unit, out[63:32]);
+  bus_reg_1 bus_reg_12(clk, conf_data, load[2]&load_unit, out[95:64]);
+  bus_reg_1 bus_reg_13(clk, conf_data, load[3]&load_unit, out[127:96]);
+  bus_reg_1 bus_reg_14(clk, conf_data, load[4]&load_unit, out[159:128]);
+  bus_reg_1 bus_reg_15(clk, conf_data, load[5]&load_unit, out[191:160]);
+  bus_reg_1 bus_reg_16(clk, conf_data, load[6]&load_unit, out[223:192]);
+  bus_reg_1 bus_reg_17(clk, conf_data, load[7]&load_unit, out[255:224]);
+  bus_reg_1 bus_reg_18(clk, conf_data, load[8]&load_unit, out[287:256]);
+  bus_reg_1 bus_reg_19(clk, conf_data, load[9]&load_unit, out[319:288]);
+  bus_reg_1 bus_reg_110(clk, conf_data, load[10]&load_unit, out[351:320]);
+  bus_reg_1 bus_reg_111(clk, conf_data, load[11]&load_unit, out[383:352]);
+  bus_reg_1 bus_reg_112(clk, conf_data, load[12]&load_unit, out[415:384]);
+  bus_reg_1 bus_reg_113(clk, conf_data, load[13]&load_unit, out[447:416]);
+  bus_reg_1 bus_reg_114(clk, conf_data, load[14]&load_unit, out[479:448]);
+  bus_reg_1 bus_reg_115(clk, conf_data, load[15]&load_unit, out[511:480]);
+  bus_reg_1 bus_reg_116(clk, conf_data, load[16]&load_unit, out[543:512]);
+  bus_reg_1 bus_reg_117(clk, conf_data, load[17]&load_unit, out[575:544]);
+  bus_reg_1 bus_reg_118(clk, conf_data, load[18]&load_unit, out[607:576]);
+  bus_reg_1 bus_reg_119(clk, conf_data, load[19]&load_unit, out[639:608]);
+  bus_reg_1 bus_reg_120(clk, conf_data, load[20]&load_unit, out[671:640]);
+  bus_reg_1 bus_reg_121(clk, conf_data, load[21]&load_unit, out[703:672]);
+  bus_reg_1 bus_reg_122(clk, conf_data, load[22]&load_unit, out[735:704]);
+  bus_reg_1 bus_reg_123(clk, conf_data, load[23]&load_unit, out[767:736]);
+  bus_reg_1 bus_reg_124(clk, conf_data, load[24]&load_unit, out[799:768]);
+  bus_reg_1 bus_reg_125(clk, conf_data, load[25]&load_unit, out[831:800]);
+  bus_reg_1 bus_reg_126(clk, conf_data, load[26]&load_unit, out[863:832]);
+  bus_reg_1 bus_reg_127(clk, conf_data, load[27]&load_unit, out[895:864]);
+  bus_reg_1 bus_reg_128(clk, conf_data, load[28]&load_unit, out[927:896]);
+  bus_reg_1 bus_reg_129(clk, conf_data, load[29]&load_unit, out[959:928]);
+  bus_reg_1 bus_reg_130(clk, conf_data, load[30]&load_unit, out[991:960]);
+  bus_reg_1 bus_reg_131(clk, conf_data, load[31]&load_unit, out[1023:992]);
 endmodule
 
 //configurable bus interconnection block with 2 buses (32*32 + 32*32) bits ,with both side data flow (i.e. busA->busB and busA<-busB)
@@ -577,35 +575,35 @@ module fpga(input clk, input [127:0]conf_data, input [7:0]load_unit, input [7:0]
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
   
   
-  LC_bus_row LC_bus_row0(clk, load_unit[4:3] & {2{split_load_pos_v[0]}}, load_level, split_load_pos_h, conf_data,bus_v[1], bus_v[0],
+  LC_bus_row LC_bus_row0(clk, load_unit[4:3] & {2{split_load_pos_v[0]}}, load_level, split_load_pos_h, conf_data,bus_h[1], bus_h[0],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row1(clk, load_unit[4:3] & {2{split_load_pos_v[1]}}, load_level, split_load_pos_h, conf_data,bus_v[2], bus_v[1],
+  LC_bus_row LC_bus_row1(clk, load_unit[4:3] & {2{split_load_pos_v[1]}}, load_level, split_load_pos_h, conf_data,bus_h[2], bus_h[1],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row2(clk, load_unit[4:3] & {2{split_load_pos_v[2]}}, load_level, split_load_pos_h, conf_data,bus_v[3], bus_v[2],
+  LC_bus_row LC_bus_row2(clk, load_unit[4:3] & {2{split_load_pos_v[2]}}, load_level, split_load_pos_h, conf_data,bus_h[3], bus_h[2],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row3(clk, load_unit[4:3] & {2{split_load_pos_v[3]}}, load_level, split_load_pos_h, conf_data,bus_v[4], bus_v[3],
+  LC_bus_row LC_bus_row3(clk, load_unit[4:3] & {2{split_load_pos_v[3]}}, load_level, split_load_pos_h, conf_data,bus_h[4], bus_h[3],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row4(clk, load_unit[4:3] & {2{split_load_pos_v[4]}}, load_level, split_load_pos_h, conf_data,bus_v[5], bus_v[4],
+  LC_bus_row LC_bus_row4(clk, load_unit[4:3] & {2{split_load_pos_v[4]}}, load_level, split_load_pos_h, conf_data,bus_h[5], bus_h[4],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row5(clk, load_unit[4:3] & {2{split_load_pos_v[5]}}, load_level, split_load_pos_h, conf_data,bus_v[6], bus_v[5],
+  LC_bus_row LC_bus_row5(clk, load_unit[4:3] & {2{split_load_pos_v[5]}}, load_level, split_load_pos_h, conf_data,bus_h[6], bus_h[5],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row6(clk, load_unit[4:3] & {2{split_load_pos_v[6]}}, load_level, split_load_pos_h, conf_data,bus_v[7], bus_v[6],
+  LC_bus_row LC_bus_row6(clk, load_unit[4:3] & {2{split_load_pos_v[6]}}, load_level, split_load_pos_h, conf_data,bus_h[7], bus_h[6],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row7(clk, load_unit[4:3] & {2{split_load_pos_v[7]}}, load_level, split_load_pos_h, conf_data,bus_v[8], bus_v[7],
+  LC_bus_row LC_bus_row7(clk, load_unit[4:3] & {2{split_load_pos_v[7]}}, load_level, split_load_pos_h, conf_data,bus_h[8], bus_h[7],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row8(clk, load_unit[4:3] & {2{split_load_pos_v[8]}}, load_level, split_load_pos_h, conf_data,bus_v[9], bus_v[8],
+  LC_bus_row LC_bus_row8(clk, load_unit[4:3] & {2{split_load_pos_v[8]}}, load_level, split_load_pos_h, conf_data,bus_h[9], bus_h[8],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row9(clk, load_unit[4:3] & {2{split_load_pos_v[9]}}, load_level, split_load_pos_h, conf_data,bus_v[10], bus_v[9],
+  LC_bus_row LC_bus_row9(clk, load_unit[4:3] & {2{split_load_pos_v[9]}}, load_level, split_load_pos_h, conf_data,bus_h[10], bus_h[9],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row10(clk, load_unit[4:3] & {2{split_load_pos_v[10]}}, load_level, split_load_pos_h, conf_data,bus_v[11], bus_v[10],
+  LC_bus_row LC_bus_row10(clk, load_unit[4:3] & {2{split_load_pos_v[10]}}, load_level, split_load_pos_h, conf_data,bus_h[11], bus_h[10],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row11(clk, load_unit[4:3] & {2{split_load_pos_v[11]}}, load_level, split_load_pos_h, conf_data,bus_v[12], bus_v[11],
+  LC_bus_row LC_bus_row11(clk, load_unit[4:3] & {2{split_load_pos_v[11]}}, load_level, split_load_pos_h, conf_data,bus_h[12], bus_h[11],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row12(clk, load_unit[4:3] & {2{split_load_pos_v[12]}}, load_level, split_load_pos_h, conf_data,bus_v[13], bus_v[12],
+  LC_bus_row LC_bus_row12(clk, load_unit[4:3] & {2{split_load_pos_v[12]}}, load_level, split_load_pos_h, conf_data,bus_h[13], bus_h[12],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row13(clk, load_unit[4:3] & {2{split_load_pos_v[13]}}, load_level, split_load_pos_h, conf_data,bus_v[14], bus_v[13],
+  LC_bus_row LC_bus_row13(clk, load_unit[4:3] & {2{split_load_pos_v[13]}}, load_level, split_load_pos_h, conf_data,bus_h[14], bus_h[13],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
-  LC_bus_row LC_bus_row14(clk, load_unit[4:3] & {2{split_load_pos_v[14]}}, load_level, split_load_pos_h, conf_data,bus_v[15], bus_v[14],
+  LC_bus_row LC_bus_row14(clk, load_unit[4:3] & {2{split_load_pos_v[14]}}, load_level, split_load_pos_h, conf_data,bus_h[15], bus_h[14],
     bus_v[0],bus_v[1],bus_v[2],bus_v[3],bus_v[4],bus_v[5],bus_v[6],bus_v[7],bus_v[8],bus_v[9],bus_v[10],bus_v[11],bus_v[12],bus_v[13],bus_v[14],bus_v[15]);
 endmodule
 
@@ -667,6 +665,7 @@ module fpga_testbench_adder_4bit();//io unit, LC unit tested
     // gpio2 connected to bus[1] as input
     // gpio1 connected to bus[6] as input
     
+    //A=0(msb) B=1 C=2 carry=3(lsb)
     load_unit = 8'b00000001; // load_unit [0] for h io
     load_pos_h = 8'b00000000;
     load_pos_v = 8'b00000000;
@@ -875,21 +874,221 @@ module fpga_testbench_adder_4bit();//io unit, LC unit tested
   end
 endmodule
 
-module fpga_testbench_add_sub_4bit();
-  //common for all testbenches
+
+
+module fpga_testbench_addersub_4bit();//io unit, LC unit tested,bus interconnections tested
   reg clk;
   reg [127:0]conf_data;
   reg [7:0]load_level,load_pos_h,load_pos_v,load_unit;
   wire [127:0]gpio;
   
-  //application specific
   wire[3:0]a,b,C;
-  wire cin,cout;
+  wire c_b_in,c_b_out,add_sub;
   
-  //common for all testbenches
   fpga fpga_new(clk, conf_data, load_unit, load_level, load_pos_h, load_pos_v, gpio);
   always
   begin
     #5 clk = ~clk;
   end
+  
+  assign gpio[76] = a[0];
+  assign gpio[72] = a[1];
+  assign gpio[68] = a[2];
+  assign gpio[64] = a[3];
+  assign gpio[77] = b[0];
+  assign gpio[73] = b[1];
+  assign gpio[69] = b[2];
+  assign gpio[65] = b[3];
+  assign C[0] = gpio[78];
+  assign C[1] = gpio[74];
+  assign C[2] = gpio[70];
+  assign C[3] = gpio[66];
+  assign c_b_out = gpio[67];
+  assign gpio[80] = c_b_in;
+  assign gpio[81] = add_sub;
+  
+  initial
+  begin
+    clk = 1;
+    
+    load_unit = 8'b00000001;//io
+    load_level = 8'b00000000;
+    load_pos_h = 8'b00000000;
+    load_pos_v = 8'b00001110;
+    conf_data[23:0] = 24'b110000011000100000100000;
+    #10;
+    conf_data[23:0] = 24'b010011111000100000100000;
+    load_pos_h = 8'b00000001;
+    #10;
+    load_pos_h = 8'b00000010;
+    #10;
+    load_pos_h = 8'b00000011;
+    #10
+    conf_data = 24'b000011111111110000000011;
+    load_pos_h = 8'b00000100;
+    #10
+    
+    
+    load_unit = 8'b00000100;//bus interconnections
+    load_pos_h = 8'b00000100;
+    load_pos_v = 8'b00001110;
+    load_level = 8'b00000001;
+    conf_data = {128{1'b0}};
+    conf_data[0] = 1'b1;
+    #10
+    
+    
+    load_unit = 8'b00001000;//LC_bus
+    load_level = 8'b00000011;
+    load_pos_h = 8'b00000000;
+    load_pos_v = 8'b00001101;//13
+    conf_data = {128{1'b0}};// d
+    conf_data[3] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000;//c
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000010;
+    conf_data[65] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+
+    load_pos_h = 8'b00000000;//op y
+    conf_data = {128{1'b0}};
+    load_level = 8'b00001001;
+    conf_data[66] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+
+    load_pos_h = 8'b00000000;//b
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000001;
+    conf_data[64] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000; //a
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000000;
+    conf_data[33] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_unit = 8'b00001000;//d
+    load_level = 8'b00000011;
+    load_pos_h = 8'b00000000;
+    load_pos_v = 8'b00001110;//14 (0-14)
+    conf_data = {128{1'b0}};
+    conf_data[3] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000;//c
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000010;
+    conf_data[65] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000;//y
+    conf_data = {128{1'b0}};
+    load_level = 8'b00001001;
+    conf_data[67] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000;//b
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000001;
+    conf_data[64] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    load_pos_h = 8'b00000000;//a
+    conf_data = {128{1'b0}};
+    load_level = 8'b00000000;
+    conf_data[97] = 1'b1;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+
+    load_unit= 8'b00010000;//LC - LUT
+    load_pos_h = 8'b00000000;
+    load_pos_v = 8'b00001101;//13
+    conf_data = {128{1'b0}};
+    conf_data[15:0] = 16'b1001011010010110;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    
+    
+    load_pos_h = 8'b00000000;
+    load_pos_v = 8'b00001110;//14
+    conf_data[15:0] = 16'b1000111011101000;
+    #10
+    load_pos_h = 8'b00000001;
+    #10
+    load_pos_h = 8'b00000010;
+    #10
+    load_pos_h = 8'b00000011;
+    #10
+    load_unit= 8'b00000000;
+  end
 endmodule
+
+
